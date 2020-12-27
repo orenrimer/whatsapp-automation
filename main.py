@@ -17,16 +17,15 @@ def main():
     driver.get(BASE_URL)
     driver.maximize_window()
     driver.implicitly_wait(config.WAIT_TIME)
-    sleep(10)
+    
     CONTACT = "//span[contains(text(),'{0}')][1]"
-    contact = driver.find_element_by_xpath(CONTACT.format(''))
+    contact = driver.find_element_by_xpath(CONTACT.format('Contact Name'))
     contact.click()
 
     msg = "Good Morning"
     INPUT_FIELD = '//div[@contenteditable="true"][@data-tab="6"]'
     input_field = driver.find_element_by_xpath(INPUT_FIELD)
     ActionChains(driver).click(input_field).send_keys(msg).send_keys(Keys.ENTER).perform()
-    sleep(5)
     driver.close()
 
 schedule.every().day.at("10:00").do(main)
